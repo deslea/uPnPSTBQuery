@@ -1,5 +1,5 @@
 # uPnPSTBQuery
-Python application that gets all available recordings on a Fetch set top box and converts to a BAT script, to encode the available recordings to MP4 with VLC. Before running the script, the user can manually edit if desired - eg, to delete commands for recordings that are already saved or otherwise not wanted, break the job into batches, etc.
+Python application that gets all available recordings on a Fetch set top box and converts to a BAT script, to encode the available recordings to MP4 with VLC. The output BAT script is saved but not executed, meaning the user can manually edit if desired - eg, to delete commands for recordings that are already saved or otherwise not wanted, break the job into batches, etc - prior to manual execution.
 
 This is my first public application and I don't know how widely it will transfer to other uPNP or Fetch use cases beyond mine. My Fetch box is one distributed for the Australian market; it is not known how universal the config and XML schema for these might be.
 
