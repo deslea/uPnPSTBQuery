@@ -25,11 +25,15 @@ import re
 # USER VARIABLES
 # TRANSCODE_OPTS & DOWNSCALE_OPTS: VLC command line options, see https://wiki.videolan.org/transcode/
 # DEST_DIR is where your bat file will be saved, and the location given in the script for your transcoded recordings.
+# FETCHBOX_ADDR is the URI on the front of all your recording before the ID (including trailing forward slash), which 
+#   you can find by looking at the Content URI in the Resource properties for any recording on the box in the uPNP Tools 
+#   app AV Media Controller. 
 # If you have a non-standard location for VLC, you also will need to edit this in two places below (search for newCom).
-# There are finicky interactions between Python, VLC, and .bat escaping, so this is not easily done as a variable here.
+#   There are finicky interactions between Python, VLC, and .bat escaping, so this is not easily done as a variable here.
 TRANSCODE_OPTS = "{vcodec=h264,scale=Auto,acodec=mpga,ab=128,channels=2,samplerate=44100,scodec=none,delinterlace}"
 DOWNSCALE_OPTS = "{vcodec=h264,scale=Auto,fps=25,vb=1500,acodec=mpga,ab=128,channels=2,samplerate=44100,scodec=none,delinterlace}"
 DEST_DIR = "C:\\Temp\\"
+FETCHBOX_ADDR = "http://192.168.1.5:49152/web/"
 
 
 # Get initial list of container and media objects
@@ -73,7 +77,7 @@ for each in objList:
         fname = stripped_fname + '.mp4'
         fname = fname.replace('ampamp', 'And')
         fname = fname.replace('ampaposs', 's')
-        uriLink = 'http://192.168.1.5:49152/web/' + each['id']
+        uriLink = FETCHBOX_ADDR + each['id']
         recording = {"filename": fname, "uri": uriLink, "flag": "", "downscale": ""}
         recordings.append(recording)
 
